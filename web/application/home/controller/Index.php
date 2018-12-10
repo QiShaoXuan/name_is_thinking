@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\controller;
+namespace app\home\controller;
 use think\Controller;
 use think\Db;
 use think\Request;
@@ -8,7 +8,7 @@ use think\Request;
 class Index extends Controller{
 
     public function  index(){
-        echo 'admin';
+        echo 'home';
     }
 
 
