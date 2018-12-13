@@ -8,7 +8,7 @@ use think\Request;
 class Index extends Controller{
 
     public function  index(){
-        echo 'admin';
+        echo 'admin1111';
     }
 
 
