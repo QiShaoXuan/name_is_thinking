@@ -5,10 +5,10 @@ use think\Db;
 use think\Request;
 
 
-class Index extends Admin{
+class Admin extends Controller{
 
-    public function  index(){
-        echo 'admin';
+    public function  __construct(){
+
     }
 
 

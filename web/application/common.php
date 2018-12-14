@@ -17,9 +17,9 @@
  * $where  where条件（数组形式）
  * $order  排序方式（默认按照id正序排列）
  * */
-function getDbMsgs($db,$where=[],$order='id asc'){
+function getDbMsgs($db,$where=[],$field='',$order='id asc'){
     $db_name=Db($db);
-    $data=$db_name->where($where)->order($order)->select();
+    $data=$db_name->where($where)->field($field)->order($order)->select();
     return $data;
 }
 
@@ -28,7 +28,7 @@ function getDbMsgs($db,$where=[],$order='id asc'){
  * $where  where条件（数组形式）
  * $order  排序方式（默认按照id正序排列）
  * */
-function getDbMsg($db,$where=[],$order='id asc'){
+function getDbMsg($db,$where=[],$field='',$order='id asc'){
     $db_name=Db($db);
     $data=$db_name->where($where)->order($order)->find();
     return $data;
@@ -38,6 +38,38 @@ function getDbMsg($db,$where=[],$order='id asc'){
  * *返回json信息
  * */
 function json($code,$msg,$data=[]){
-    $result=json_encode(array('code'=>$code,'msg'=>$msg,$data=>$data));
+    $result=json_encode(array('code'=>$code,'msg'=>$msg,'data'=>$data),JSON_UNESCAPED_UNICODE);
     return $result;
+}
+
+/*修改数据表中信息
+ * $db  数据表名称
+ * $where  where条件（数组形式）
+ * $editData  修改的数据（数组形式）
+ * */
+function editDbMsg($db,$where=[],$editData=[]){
+    $db_name=Db($db);
+    $data=$db_name->where($where)->update($editData);
+    return $data;
+}
+
+/*添加数据表中信息
+ * $db  数据表名称
+ * $where  where条件（数组形式）
+ * $addData  插入的数据（数组形式）
+ * */
+function addDbMsg($db,$where=[],$addData=[]){
+    $db_name=Db($db);
+    $data=$db_name->where($where)->insertGetId($addData);
+    return $data;
+}
+
+/*删除数据表中信息
+ * $db  数据表名称
+ * $where  where条件（数组形式）
+ * */
+function delDbMsg($db,$where=[]){
+    $db_name=Db($db);
+    $data=$db_name->where($where)->delete();
+    return $data;
 }
